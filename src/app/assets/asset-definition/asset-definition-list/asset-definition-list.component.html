@@ -1,0 +1,26 @@
+<a href="#" class="text-white" routerLink="../asset-definition"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Asset Types List</h3>
+</div>
+<table class="table bg-light table-bordered table-striped w-75 m-auto mb-5 pb-5 rounded">
+    <thead>
+        <tr class="text-center">
+            <th>Asset Definition Id</th>
+            <th>Asset Definition Name</th>
+            <th>Asset Type</th>
+            <th>Asset Class</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center" *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions">
+            <td *ngIf="assetDefinition.isActive">{{assetDefinition.assetDefinitionId}}</td>
+            <td *ngIf="assetDefinition.isActive">{{assetDefinition.name}}</td>
+            <td *ngIf="assetDefinition.isActive">{{assetDefinition.assetType.typeName}}</td>
+            <td *ngIf="assetDefinition.classId === 1 && assetDefinition.isActive">HW</td>
+            <td *ngIf="assetDefinition.classId === 2 && assetDefinition.isActive">SW</td>
+            <td *ngIf="assetDefinition.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
+            <!-- <td *ngIf="!assetDefinition.isActive"><input type="checkbox" class="form-check-input" disabled></td> -->
+        </tr>
+    </tbody> 
+</table>

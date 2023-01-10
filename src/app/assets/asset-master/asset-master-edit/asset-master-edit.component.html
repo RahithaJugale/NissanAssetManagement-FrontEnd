@@ -1,0 +1,107 @@
+<a href="#" class="text-white" routerLink="../asset-master-manage"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Edit Asset Master</h3>
+</div>
+<div class="container bg-light rounded w-75">
+    <form [formGroup]="editAssetMasterForm" autocomplete="off" (ngSubmit)="submitDetails()">
+        <div class="row bg-light rounded pt-3">
+            <div class="col-5 m-auto">
+                <label class="form-label"><b>Asset Master ID</b></label>
+            </div>
+            <div class="col">
+                <!-- AssetMasterId -->
+                <input type="text" placeholder="" class="form-control" required
+                formControlName="assetMasterId" readonly> 
+                
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-5 m-auto">
+                <label class="form-label"><b>Asset Definition</b></label>
+            </div>
+            <div class="col">
+                <!-- assetDefinitionId -->
+                <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required>
+                    <option value="" selected disabled>Select Asset Definition...</option>
+                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" (click)="getValue(assetDefinition.assetDefinitionId)">
+                        {{assetDefinition.name}}</option> 
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
+                <div *ngIf="formControls.assetDefinitionId.errors.required">
+                    <p>Asset Definition is required!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-5 m-auto">
+                <label class="form-label"><b>Asset Type</b></label>
+            </div>
+            <div class="col">
+                <!-- assetTypeId -->
+                <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
+                    <option value="" selected disabled>Select Asset Type...</option>
+                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">
+                        {{assetType.typeName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
+                <div *ngIf="formControls.assetTypeId.errors.required">
+                    <p>Asset Type is required!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-5 m-auto">
+                <label class="form-label"><b>Asset Type</b></label>
+            </div>
+            <div class="col">
+                <!-- vendorId -->
+                <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
+                    <option value="" selected disabled>Select Asset Type...</option>
+                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
+                <div *ngIf="formControls.assetTypeId.errors.required">
+                    <p>Asset Type is required!</p>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- model -->
+        <!-- serialNumber -->
+        <!-- manufacturingYear -->
+        <!-- purchaseDate -->
+        <!-- warranty -->
+        <!-- warrantyFrom -->
+        <!-- warrantyTo -->
+        <!-- isActive -->
+        <div class="row mt-2 rounded">
+            <div class="col d-flex justify-content-end ">
+                <div class="form-check">
+                    <label class="form-label"><b>Is Active</b></label>
+                    <input type="checkbox" class="form-check-input" formControlName="isActive">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="row m-auto mt-3 pb-4 w-50">
+            <button class="btn btn-dark bg-gradient" type="submit"><b>Submit</b></button>
+        </div>
+
+    </form>
+</div>

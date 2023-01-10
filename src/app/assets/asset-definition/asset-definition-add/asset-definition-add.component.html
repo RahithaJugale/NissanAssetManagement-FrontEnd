@@ -1,0 +1,99 @@
+<a href="#" class="text-white" routerLink="../asset-definition"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Add New Asset Definition</h3>
+</div>
+<div class="container bg-light rounded w-50">
+    <form [formGroup]="addAssetDefinitionForm" autocomplete="off" (ngSubmit)="submitDetails()">
+        <div class="row bg-light rounded pt-5">
+            <div class="col-6 m-auto">
+                <label class="form-label"><b>Asset Definition Name</b></label>
+            </div>
+            <div class="col">
+                <!-- name -->
+                <input type="text" placeholder="Enter Asset name" class="form-control" required
+                formControlName="name"> 
+                
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-6"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.name.errors" class="text-danger">
+                    <div *ngIf="formControls.name.errors.required">
+                        <p>Asset Name is required!</p>
+                    </div>
+                    <div *ngIf="formControls.name.errors.pattern">
+                        <p>Invalid Asset Name!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-6 m-auto">
+                <label class="form-label"><b>Asset Type</b></label>
+            </div>
+            <div class="col">
+                <!-- assetTypeId -->
+                <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
+                    <option value="" selected disabled>Select Asset Type...</option>
+                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-6"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
+                    <div *ngIf="formControls.assetTypeId.errors.required">
+                        <p>Asset Type is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-6 m-auto">
+                <label class="form-label"><b>Asset Type</b></label>
+            </div>
+            <div class="col">
+                <!-- class -->
+                <select class="form-control" name="classId" id="classId" formControlName="classId" required>
+                    <option value="" selected disabled>Select Asset Class...</option>
+                    <!-- <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option> -->
+                    <option value="1">HW</option>
+                    <option value="2">SW</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-6"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.classId.errors" class="text-danger">
+                    <div *ngIf="formControls.classId.errors.required">
+                        <p>Asset Class is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- isActive -->
+        <div class="row mt-2 rounded">
+            <div class="col d-flex justify-content-end ">
+                <div class="form-check">
+                    <label class="form-label"><b>Is Available?</b></label>
+                    <input type="checkbox" class="form-check-input" formControlName="isActive">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="row m-auto mt-3 pb-4 w-50">
+            <button class="btn btn-dark bg-gradient" type="submit"><b>Submit</b></button>
+        </div>
+
+    </form>
+</div>

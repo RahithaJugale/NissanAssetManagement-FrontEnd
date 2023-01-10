@@ -1,0 +1,269 @@
+<div class="row">
+    <h3 class="text-center text-light p-4">Add New Users</h3>
+</div>
+<div class="container bg-light rounded w-75">
+    <form [formGroup]="addUserForm" autocomplete="off" (ngSubmit)="submitDetails()">
+        <!-- Email Id -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>Email ID</b></label>
+            </div>
+
+            <div class="col">
+                <input type="email" placeholder="Enter Email ID" class="form-control" formControlName="emailId"
+                    autocomplete="off" required>
+            </div>
+        </div>
+        <!-- Validation -->
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.emailId.errors">
+                    <div *ngIf="formControls.emailId.errors.required" class="text-danger">
+                        <p>Email ID is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>Password</b></label>
+            </div>
+            <div class="col">
+                <!-- password -->
+                <input type="password" placeholder="Enter Password" class="form-control" required
+                    formControlName="password">
+            </div>
+            <div class="row">
+                <!-- Validation -->
+                <div class="col-3"></div>
+                <div class="col">
+                    <div *ngIf="isSubmitted && formControls.password.errors" class="text-danger">
+                        <div *ngIf="formControls.password.errors.required">
+                            <p>Password is required!</p>
+                        </div>
+                        <div *ngIf="formControls.password.errors.minlength">
+                            <p>Minimum 8 characters required!</p>
+                        </div>
+                        <div *ngIf="formControls.password.errors.maxlength">
+                            <p>Maximum 15 characters are allowed!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>User Type</b></label>
+            </div>
+            <div class="col">
+                <!-- Usertype -->
+                <select class="form-control" name="typeId" id="typeId" formControlName="typeId" required>
+                    <option value="" selected disabled>Select UserType...</option>
+                    <!-- <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option> -->
+                    <option value="1">Admin</option>
+                    <option value="2">Purchase Manager</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-3"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.typeId.errors" class="text-danger">
+                    <div *ngIf="formControls.typeId.errors.required">
+                        <p>UserType is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>First Name</b></label>
+            </div>
+            <div class="col">
+                <!-- firstName -->
+                <input type="text" placeholder="Enter First name" class="form-control" required
+                    formControlName="firstName">
+            </div>
+            <div class="row">
+                <!-- Validation -->
+                <div class="col-3"></div>
+                <div class="col">
+                    <div *ngIf="isSubmitted && formControls.firstName.errors" class="text-danger">
+                        <div *ngIf="formControls.firstName.errors.required">
+                            <p>First Name is required!</p>
+                        </div>
+                        <div *ngIf="formControls.firstName.errors.minlength">
+                            <p>Minimum 3 characters required!</p>
+                        </div>
+                        <div *ngIf="formControls.firstName.errors.maxlength">
+                            <p>Only 25 characters are allowed!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>Last Name</b></label>
+            </div>
+            <div class="col">
+                <!-- lastName -->
+                <input type="text" placeholder="Enter Last name" class="form-control" required
+                    formControlName="lastName">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-3"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.lastName.errors" class="text-danger">
+                    <div *ngIf="formControls.lastName.errors.required">
+                        <p>Last Name is required!</p>
+                    </div>
+                    <div *ngIf="formControls.lastName.errors.minlength">
+                        <p>Minimum 3 characters required!</p>
+                    </div>
+                    <div *ngIf="formControls.lastName.errors.maxlength">
+                        <p>Only 25 characters are allowed!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>Age</b></label>
+            </div>
+            <div class="col">
+                <!-- age -->
+                <input type="number" placeholder="Enter Age" class="form-control" required formControlName="age">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-3"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.age.errors" class="text-danger">
+                    <div *ngIf="formControls.age.errors.required">
+                        <p>Age is required!</p>
+                    </div>
+                    <div *ngIf="formControls.age.errors.min">
+                        <p>Age should be between 25 and 45!</p>
+                    </div>
+                    <div *ngIf="formControls.age.errors.max">
+                        <p>Age should be between 25 and 45!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>Gender</b></label>
+            </div>
+            <div class="col">
+                <!-- gender -->
+                <div class="row">
+                    <div class="col ms-3 form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Male" id="Male"
+                            formControlName="gender">
+                        <label class="form-check-label" for="Male">Male</label>
+                    </div>
+                    <div class="col form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Female" id="Female"
+                            formControlName="gender">
+                        <label class="form-check-label" for="Female">Female</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-3"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.gender.errors" class="text-danger">
+                    <div *ngIf="formControls.age.errors.required">
+                        <p>Select Gender!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light mt-3 rounded">
+            <div class="col-3">
+                <label class="form-label m-auto"><b>Address</b></label>
+            </div>
+            <div class="col">
+                <!-- address -->
+                <textarea placeholder="Enter Address" rows="2" cols="20" class="form-control" required
+                    formControlName="address"> </textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-3"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.address.errors" class="text-danger">
+                    <div *ngIf="formControls.address.errors.required">
+                        <p>Address is required!</p>
+                    </div>
+                    <div *ngIf="formControls.address.errors.minlength">
+                        <p>Minimum 3 characters are required!</p>
+                    </div>
+                    <div *ngIf="formControls.address.errors.maxlength">
+                        <p>Exceeded Limit!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-light rounded pt-3">
+            <div class="col-3 m-auto">
+                <label class="form-label"><b>Phone Number</b></label>
+            </div>
+            <div class="col">
+                <!-- phone number -->
+                <input type="tel" placeholder="Enter phone number" class="form-control" required
+                    formControlName="phoneNumber">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-3"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.phoneNumber.errors" class="text-danger">
+                    <div *ngIf="formControls.phoneNumber.errors.required">
+                        <p>Phone Number is required!</p>
+                    </div>
+                    <div *ngIf="formControls.phoneNumber.errors.minlength">
+                        <p>Only 10 digits permitted!</p>
+                    </div>
+                    <div *ngIf="formControls.phoneNumber.errors.maxlength">
+                        <p>Only 10 digits permitted!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- isActive -->
+        <div class="row mt-2 rounded">
+            <div class="col d-flex justify-content-end ">
+                <div class="form-check">
+                    <label class="form-label"><b>Is Active</b></label>
+                    <input type="checkbox" class="form-check-input" formControlName="isActive">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="row m-auto mt-3 pb-4 w-50">
+            <button class="btn btn-dark bg-gradient" type="submit"><b>Submit</b></button>
+        </div>
+
+    </form>
+</div>

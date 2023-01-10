@@ -1,0 +1,40 @@
+<a href="#" class="text-white" routerLink="../asset-master"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Asset Master List</h3>
+</div>
+<table class="table bg-light table-bordered table-striped w-100 m-auto mb-5 pb-5 rounded">
+    <thead>
+        <tr class="text-center">
+            <th>Asset Master Id</th>
+            <th>Asset Type</th>
+            <th>Vendor</th>
+            <th>Asset Definition</th>
+            <th>Model</th>
+            <th>Serial Number</th>
+            <th>Manufacturing year</th>
+            <th>Purchase Date</th>
+            <th>Warranty</th>
+            <th>Warranty From</th>
+            <th>Warranty To</th>
+            <th>Status</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center" *ngFor="let assetMaster of assetMasterService.assetMasters">
+            <td>{{assetMaster.assetMasterId}}</td>
+            <td>{{assetMaster.assetType.typeName}}</td> 
+            <td>{{assetMaster.vendor.vendorName}}</td>
+            <td>{{assetMaster.assetDefinition.name}}</td>
+            <td>{{assetMaster.model}}</td>
+            <td>{{assetMaster.serialNumber}}</td>
+            <td>{{assetMaster.manufacturingYear}}</td>
+            <td>{{assetMaster.purchaseDate}}</td>
+            <td>{{assetMaster.warranty}}</td>
+            <td>{{assetMaster.warrantyFrom}}</td>
+            <td>{{assetMaster.warrantyTo}}</td>
+            <td *ngIf="assetMaster.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
+            <td *ngIf="!assetMaster.isActive"><input type="checkbox" class="form-check-input" disabled></td>
+        </tr>
+    </tbody> 
+</table>

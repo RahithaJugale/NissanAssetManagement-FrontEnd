@@ -1,0 +1,23 @@
+// Login page
+body{
+    background-image: url('D:/Faith Infotech/Angular/AssetManagementSystem/src/assets/images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#loginbtn{
+    background-color: rgb(20, 68, 116);
+}
+
+#loginbtn:hover{
+    transform: scale(1.2);
+}
+
+#loginContainer{
+    position: absolute;
+    padding: 30px;
+    left: 520px;
+    top: 120px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 3px white;
+}

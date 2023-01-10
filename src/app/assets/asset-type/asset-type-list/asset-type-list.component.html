@@ -1,0 +1,21 @@
+<a href="#" class="text-white" routerLink="../asset-type"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Asset Types List</h3>
+</div>
+<table class="table bg-light table-bordered table-striped w-75 m-auto mb-5 pb-5 rounded">
+    <thead>
+        <tr class="text-center">
+            <th>Asset Type Id</th>
+            <th>Asset Type Name</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center" *ngFor="let assetType of assetTypeService.assetTypes">
+            <td *ngIf="assetType.isActive">{{assetType.assetTypeId}}</td>
+            <td *ngIf="assetType.isActive">{{assetType.typeName}}</td>
+            <td *ngIf="assetType.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
+            <!-- <td *ngIf="!assetType.isActive"><input type="checkbox" class="form-check-input" disabled></td> -->
+        </tr>
+    </tbody> 
+</table>

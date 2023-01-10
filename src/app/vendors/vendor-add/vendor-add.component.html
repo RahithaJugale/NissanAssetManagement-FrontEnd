@@ -1,0 +1,175 @@
+<a href="#" class="text-white" routerLink="../vendor"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Add New Vendor</h3>
+</div>
+<div class="container bg-light rounded w-50">
+    <form [formGroup]="addVendorForm" autocomplete="off" (ngSubmit)="submitDetails()">
+        <div class="row bg-light rounded pt-5">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Vendor Name</b></label>
+            </div>
+            <div class="col">
+                <!-- vendorName -->
+                <input type="text" placeholder="Enter Vendor name" class="form-control" required
+                    formControlName="vendorName">
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.vendorName.errors" class="text-danger">
+                    <div *ngIf="formControls.vendorName.errors.required">
+                        <p>Vendor Name is required!</p>
+                    </div>
+                    <div *ngIf="formControls.vendorName.errors.minlength">
+                        <p>Minimum 3 characters required!</p>
+                    </div>
+                    <div *ngIf="formControls.vendorName.errors.maxlength">
+                        <p>Maximum 25 characters allowed!</p>
+                    </div>
+                    <!-- <div *ngIf="formControls.vendorName.errors.pattern">
+                        <p>Invalid Name!</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Vendor Type</b></label>
+            </div>
+            <div class="col">
+                <!-- vendorType -->
+                <input type="text" placeholder="Enter Vendor Type" readonly class="form-control" required
+                    formControlName="vendorType">
+
+            </div>
+        </div>
+        <!-- <div class="row"> -->
+        <!-- Validation -->
+        <!-- <div *ngIf="isSubmitted && formControls.vendorName.errors" class="text-danger">
+                <div *ngIf="formControls.vendorName.errors.required">
+                    <p>Vendor Type is required!</p>
+                </div>
+            </div>
+        </div> -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Asset Type</b></label>
+            </div>
+            <div class="col">
+                <!-- assetTypeId -->
+                <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
+                    <option value="" selected disabled>Select Asset Type...</option>
+                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">
+                        {{assetType.typeName}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
+                    <div *ngIf="formControls.assetTypeId.errors.required">
+                        <p>Asset Type is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Vendor From</b></label>
+            </div>
+            <div class="col">
+                <!-- vendorFrom -->
+                <input type="date" placeholder="Vendor From" class="form-control" required formControlName="vendorFrom">
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.vendorFrom.errors" class="text-danger">
+                    <div *ngIf="formControls.vendorFrom.errors.required">
+                        <p>Vendor From is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Vendor To</b></label>
+            </div>
+            <div class="col">
+                <!-- vendorTo -->
+                <input type="date" placeholder="Vendor To" class="form-control" required formControlName="vendorTo">
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.vendorTo<formControls.vendorFrom">
+                    <p class="text-danger">Date should be greater than From date!</p>
+                </div>
+                <div *ngIf="isSubmitted && formControls.vendorTo.errors" class="text-danger">
+                    <div *ngIf="formControls.vendorTo.errors.required">
+                        <p>Vendor To is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-light mt-3 rounded">
+            <div class="col-4">
+                <label class="form-label m-auto"><b>Address</b></label>
+            </div>
+            <div class="col">
+                <!-- address -->
+                <textarea placeholder="Enter Address" rows="2" cols="20" class="form-control" required
+                formControlName="vendorAddress"> </textarea>
+                
+            </div>
+
+        </div>
+
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.vendorAddress.errors" class="text-danger">
+                    <div *ngIf="formControls.vendorAddress.errors.required">
+                        <p>Address is required!</p>
+                    </div>
+                    <div *ngIf="formControls.vendorAddress.errors.minlength">
+                        <p>Minimum 3 characters are required!</p>
+                    </div>
+                    <div *ngIf="formControls.vendorAddress.errors.maxlength">
+                        <p>Exceeded Limit!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- isActive -->
+        <div class="row mt-2 rounded">
+            <div class="col d-flex justify-content-end ">
+                <div class="form-check">
+                    <label class="form-label"><b>Is Active</b></label>
+                    <input type="checkbox" class="form-check-input" formControlName="isActive">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="row m-auto mt-3 pb-4 w-50">
+            <button class="btn btn-dark bg-gradient" type="submit"><b>Submit</b></button>
+        </div>
+
+    </form>
+</div>

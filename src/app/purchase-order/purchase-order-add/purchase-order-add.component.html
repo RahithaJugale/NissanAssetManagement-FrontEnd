@@ -1,0 +1,125 @@
+<!-- <a href="#" class="text-white" routerLink="../purchase"><i class="fa fa-arrow-left float-left"></i></a> -->
+<div class="row">
+    <h3 class="text-center text-light p-4">Add New Purchase Order</h3>
+</div>
+<div class="container bg-light rounded w-75">
+    <form [formGroup]="addPurchaseForm" autocomplete="off" (ngSubmit)="submitDetails()">
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Purchase Order No</b></label>
+            </div>
+            <div class="col">
+                <!-- purchaseOrderNo -->
+                <input type="text" placeholder="Enter Purchase Order Number" class="form-control" required
+                    formControlName="purchaseOrderNo">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.purchaseOrderNo.errors" class="text-danger">
+                <div *ngIf="formControls.purchaseOrderNo.errors.required">
+                    <p>Purchase Order is required!</p>
+                </div>
+            </div>
+        </div>
+        <!-- assetDefinitionId -->
+        <div class="row bg-light rounded pt-3"> 
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Asset Definition</b></label>
+            </div>
+            <div class="col">
+                <!-- assetDefinitionId -->
+                <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required>
+                    <option value="" selected disabled>Select Asset Definition...</option>
+                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" (click)="getValue()">
+                        {{assetDefinition.name}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
+                <div *ngIf="formControls.assetDefinitionId.errors.required">
+                    <p>Asset Definition is required!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Asset Type</b></label>
+            </div>
+            <div class="col">
+                <!-- assetTypeId -->
+                <!-- <div *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions"> -->
+                    <!-- <div *ngIf="purchaseOrderService.assetDefinitionId === assetDefinition.assetDefinitionId"> -->
+                        <input type="text" formControlName="assetTypeId" class="form-control" value="formControls.assetDefinitionId" readonly>
+                    </div> 
+                <!-- </div> -->
+            <!-- </div>  -->
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
+                <div *ngIf="formControls.assetTypeId.errors.required">
+                    <p>Asset Type is required!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Quantity</b></label>
+            </div>
+            <div class="col">
+                <!-- vendorFrom -->
+                <input type="number" placeholder="Quantity" class="form-control" required formControlName="quantity">
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.quantity.errors" class="text-danger">
+                <div *ngIf="formControls.quantity.errors.required">
+                    <p>Quantity is required!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Vendor Id</b></label>
+            </div>
+            <div class="col">
+                <select class="form-control" name="vendorId" id="vendorId" formControlName="vendorId" required>
+                    <option value="" selected>Select Vendor...</option>
+                    <option *ngFor="let vendor of vendorService.vendors"></option>
+                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}">
+                        {{assetDefinition.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div *ngIf="isSubmitted && formControls.vendorId.errors" class="text-danger">
+                <div *ngIf="formControls.vendorId.errors.required">
+                    <p>Vendor  is required!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- isActive -->
+        <div class="row mt-2 rounded">
+            <div class="col d-flex justify-content-end ">
+                <div class="form-check">
+                    <label class="form-label"><b>Is Active</b></label>
+                    <input type="checkbox" class="form-check-input" formControlName="isActive">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="row m-auto mt-3 pb-4 w-50">
+            <button class="btn btn-dark bg-gradient" type="submit"><b>Submit</b></button>
+        </div>
+
+    </form>
+</div>
