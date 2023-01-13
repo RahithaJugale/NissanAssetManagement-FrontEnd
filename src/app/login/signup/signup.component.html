@@ -103,6 +103,9 @@
                         <div *ngIf="formControls.firstName.errors.maxlength">
                             <p>Only 25 characters are allowed!</p>
                         </div>
+                        <div *ngIf="formControls.lastName.errors.pattern">
+                            <p>Special characters are not allowed!</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,6 +133,9 @@
                     </div>
                     <div *ngIf="formControls.lastName.errors.maxlength">
                         <p>Only 25 characters are allowed!</p>
+                    </div>
+                    <div *ngIf="formControls.lastName.errors.pattern">
+                        <p>Special characters are not allowed!</p>
                     </div>
                 </div>
             </div>
