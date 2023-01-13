@@ -55,13 +55,13 @@
         </div>
         <div class="row bg-light rounded pt-3">
             <div class="col-6 m-auto">
-                <label class="form-label"><b>Asset Type</b></label>
+                <label class="form-label"><b>Asset Class</b></label>
             </div>
             <div class="col">
                 <!-- class -->
                 <select class="form-control" name="classId" id="classId" formControlName="classId" required>
                     <option value="" selected disabled>Select Asset Class...</option>
-                    <!-- <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option> -->
+                    <!-- <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.status.status}}</option> -->
                     <option value="1">HW</option>
                     <option value="2">SW</option>
                 </select>

@@ -28,10 +28,10 @@ export class SignupComponent implements OnInit {
         typeId: ['', [Validators.required]],
 
         //firstName
-        firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[A-Za-z ]")]],
+        firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[A-Za-z ]+")]],
 
         //lastName
-        lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[A-Za-z ]")]],
+        lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[A-Za-z ]+")]],
 
         //age
         age: ['', [Validators.required, Validators.min(25), Validators.max(45)]],

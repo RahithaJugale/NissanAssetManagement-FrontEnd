@@ -69,7 +69,7 @@ export class PurchaseOrderAddComponent implements OnInit {
       this.purchaseOrderService.addNewPurchaseOrder(this.addPurchaseForm.value).subscribe(
         (result) => {
           console.log(result);
-          if (result == null) {
+          if (result === null) {
             this.toastr.error("Delivery date should be greater than Order Date");
           } else {
             this.toastr.success("Purchase Order added successfully");

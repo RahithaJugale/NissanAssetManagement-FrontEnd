@@ -57,7 +57,7 @@ export class VendorAddComponent implements OnInit {
       this.vendorService.addNewVendor(this.addVendorForm.value).subscribe(
         (result) => {
           console.log(result);
-          if (result == null) {
+          if (result === null) {
             this.toastr.error("To date should be greater than From date");
           } else {
             this.vendorService.vendors = result as Vendor[];
