@@ -21,7 +21,7 @@ export class AssetDefinitionAddComponent implements OnInit {
     this.addAssetDefinitionForm = this.formBuilder.group(
       {
         //name
-        name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]")]],
+        name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]+")]],
 
         //assetTypeId
         assetTypeId: [''],

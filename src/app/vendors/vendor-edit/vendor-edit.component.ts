@@ -25,7 +25,7 @@ export class VendorEditComponent implements OnInit {
         vendorId: [this.vendorService.vendor.vendorId],
 
         //vendorName
-        vendorName: [this.vendorService.vendor.vendorName, [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+        vendorName: [this.vendorService.vendor.vendorName, [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[A-Za-z ]+")]],
 
         //vendorType
         vendorType: ['Supplier', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
@@ -60,7 +60,8 @@ export class VendorEditComponent implements OnInit {
       this.vendorService.updateVendor(this.editVendorForm.value).subscribe(
         (result) => {
           if(result == null){
-            this.toastr.error("Error");
+            // this.toastr.error("Error");
+            this.toastr.error("Please Check From and To Date");
           }
           else{
             console.log(result);

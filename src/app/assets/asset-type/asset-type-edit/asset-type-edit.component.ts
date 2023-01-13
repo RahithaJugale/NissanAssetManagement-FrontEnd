@@ -22,7 +22,7 @@ export class AssetTypeEditComponent implements OnInit {
         //assetTypeId
         assetTypeId: [this.assetTypeService.assetTypeData.assetTypeId],
         //typeName
-        typeName: [this.assetTypeService.assetTypeData.typeName, [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]")]],
+        typeName: [this.assetTypeService.assetTypeData.typeName, [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]+")]],
 
         //isActive
         isActive: [this.assetTypeService.assetTypeData.isActive, [Validators.required]]

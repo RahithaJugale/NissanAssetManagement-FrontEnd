@@ -5,7 +5,7 @@
 <div class="container bg-light rounded w-75">
     <form [formGroup]="editAssetMasterForm" autocomplete="off" (ngSubmit)="submitDetails()">
         <div class="row bg-light rounded pt-3">
-            <div class="col-5 m-auto">
+            <div class="col-4 m-auto">
                 <label class="form-label"><b>Asset Master ID</b></label>
             </div>
             <div class="col">
@@ -15,79 +15,225 @@
                 
             </div>
         </div>
-        <div class="row bg-light rounded pt-3">
-            <div class="col-5 m-auto">
+        <div class="row bg-light rounded pt-3"> 
+            <div class="col-4 m-auto">
                 <label class="form-label"><b>Asset Definition</b></label>
             </div>
             <div class="col">
                 <!-- assetDefinitionId -->
-                <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required>
+                <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required (click)="getValue()">
                     <option value="" selected disabled>Select Asset Definition...</option>
-                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" (click)="getValue(assetDefinition.assetDefinitionId)">
-                        {{assetDefinition.name}}</option> 
+                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" >
+                        {{assetDefinition.name}}</option>
                 </select>
 
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
-                <div *ngIf="formControls.assetDefinitionId.errors.required">
-                    <p>Asset Definition is required!</p>
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
+                    <div *ngIf="formControls.assetDefinitionId.errors.required">
+                        <p>Asset Definition is required!</p>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-5 m-auto">
+            <div class="col-4 m-auto">
                 <label class="form-label"><b>Asset Type</b></label>
             </div>
             <div class="col">
                 <!-- assetTypeId -->
-                <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
-                    <option value="" selected disabled>Select Asset Type...</option>
-                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">
-                        {{assetType.typeName}}</option>
-                </select>
-            </div>
+                <!-- <div *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions"> -->
+                    <!-- <div *ngIf="purchaseOrderService.assetDefinitionId === assetDefinition.assetDefinitionId"> -->
+                        <input type="text" formControlName="assetTypeId" class="form-control" value="{{purchaseOrderService.assetTypeName}}" readonly>
+                    </div> 
+                <!-- </div> -->
+            <!-- </div>  -->
         </div>
-        <div class="row">
+        <!-- <div class="row"> -->
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
+            <!-- <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
                 <div *ngIf="formControls.assetTypeId.errors.required">
                     <p>Asset Type is required!</p>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-5 m-auto">
-                <label class="form-label"><b>Asset Type</b></label>
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Vendor Id</b></label>
             </div>
             <div class="col">
-                <!-- vendorId -->
-                <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
-                    <option value="" selected disabled>Select Asset Type...</option>
-                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option>
+                <select class="form-control" name="vendorId" id="vendorId" formControlName="vendorId" required>
+                    <option value="" selected disabled>Select Vendor...</option>
+                    <option *ngFor="let vendor of purchaseOrderService.purchaseVendors" value="{{vendor.vendorId}}">
+                        {{vendor.vendorName}}</option>
                 </select>
-                
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
-                <div *ngIf="formControls.assetTypeId.errors.required">
-                    <p>Asset Type is required!</p>
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.vendorId.errors" class="text-danger">
+                    <div *ngIf="formControls.vendorId.errors.required">
+                        <p>Vendor is required!</p>
+                    </div>
                 </div>
             </div>
         </div>
         
 
         <!-- model -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Model</b></label>
+            </div>
+            <div class="col">
+                <input type="text" placeholder="Enter Model" class="form-control" required
+                    formControlName="model">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.model.errors" class="text-danger">
+                    <div *ngIf="formControls.model.errors.required">
+                        <p>Purchase Order is required!</p>
+                    </div>
+                    <div *ngIf="formControls.model.errors.minlength">
+                        <p>Minimum 2 characters required!</p>
+                    </div>
+                    <div *ngIf="formControls.model.errors.maxlength">
+                        <p>Only 10 characters allowed!</p>
+                    </div>
+                    <div *ngIf="formControls.model.errors.pattern">
+                        <p>Special characters are not allowed!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- serialNumber -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Serial Number</b></label>
+            </div>
+            <div class="col">
+                <input type="text" placeholder="Enter serial Number" class="form-control" required
+                    formControlName="serialNumber">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.serialNumber.errors" class="text-danger">
+                    <div *ngIf="formControls.serialNumber.errors.required">
+                        <p>Purchase Order is required!</p>
+                    </div>
+                    <div *ngIf="formControls.serialNumber.errors.minlength">
+                        <p>Minimum 2 characters required!</p>
+                    </div>
+                    <div *ngIf="formControls.serialNumber.errors.maxlength">
+                        <p>Only 10 characters allowed!</p>
+                    </div>
+                    <div *ngIf="formControls.serialNumber.errors.pattern">
+                        <p>Special characters are not allowed!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- manufacturingYear -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Manufacturing Year</b></label>
+            </div>
+            <div class="col">
+                <input type="number" placeholder="Manufacturing Year" class="form-control" required formControlName="manufacturingYear">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.manufacturingYear.errors" class="text-danger">
+                    <div *ngIf="formControls.manufacturingYear.errors.required">
+                        <p>Manufacturing Year is required!</p>
+                    </div>
+                    <div *ngIf="formControls.manufacturingYear.errors.min">
+                        <p>Year should be greater than 1990!</p>
+                    </div>
+                    <div *ngIf="formControls.manufacturingYear.errors.max">
+                        <p>Manufacturing Year cannot be in the future!</p>
+                    </div>
+                    <div *ngIf="formControls.manufacturingYear.errors.minlength">
+                        <p>Please enter year in 4 digits!</p>
+                    </div>
+                    <div *ngIf="formControls.manufacturingYear.errors.required">
+                        <p>Please enter year in 4 digits!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- purchaseDate -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Purchase Date</b></label>
+            </div>
+            <div class="col">
+                <input type="date" placeholder="Purchase Date" class="form-control" required formControlName="purchaseDate">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.purchaseDate.errors" class="text-danger">
+                    <div *ngIf="formControls.purchaseDate.errors.required">
+                        <p>Purchase Date is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light rounded pt-3" *ngIf="formControls.warranty">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <label class="form-label"><b>From</b></label>
+            </div>
+            <div class="col-4">
+                <label class="form-label"><b>To</b></label>
+            </div>
+        </div>
         <!-- warranty -->
-        <!-- warrantyFrom -->
-        <!-- warrantyTo -->
+        <div class="row bg-light rounded">
+            <div class="col-4 d-flex justify-content-start ">
+                <div class="form-check">
+                    <label class="form-label"><b>Warranty</b></label>
+                    <input type="checkbox" class="form-check-input" formControlName="warranty">
+                </div>
+            </div>
+            <!-- warrantyFrom -->
+            <div class="col-4" *ngIf="formControls.warranty">
+                <input type="date" placeholder="warranty From" class="form-control" required formControlName="warrantyFrom">
+            </div>
+            <!-- warrantyTo -->
+            <div class="col-4" *ngIf="formControls.warranty">
+                <input type="date" placeholder="warranty To" class="form-control" required formControlName="warrantyTo">
+            </div>
+            <!-- warrantyFrom -->
+            <div class="col-4" *ngIf="!formControls.warranty">
+                <input type="date" placeholder="warranty From" class="form-control" required formControlName="warrantyFrom" readonly>
+            </div>
+            <!-- warrantyTo -->
+            <div class="col-4" *ngIf="!formControls.warranty">
+                <input type="date" placeholder="warranty To" class="form-control" required formControlName="warrantyTo" readonly>
+            </div>
+        </div>
+        
+        
         <!-- isActive -->
         <div class="row mt-2 rounded">
             <div class="col d-flex justify-content-end ">

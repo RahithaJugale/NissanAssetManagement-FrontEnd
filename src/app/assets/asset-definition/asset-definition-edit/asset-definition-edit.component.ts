@@ -25,7 +25,7 @@ export class AssetDefinitionEditComponent implements OnInit {
         assetDefinitionId: [this.assetDefinitionService.assetDefinition.assetDefinitionId],
 
         //name
-        name: [this.assetDefinitionService.assetDefinition.name, [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]")]],
+        name: [this.assetDefinitionService.assetDefinition.name, [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]+")]],
 
         //assetTypeId
         assetTypeId: [this.assetDefinitionService.assetDefinition.assetTypeId],

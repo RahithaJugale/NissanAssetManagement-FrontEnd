@@ -36,7 +36,7 @@
             <td>{{assetMaster.warrantyTo}}</td>
             <td *ngIf="assetMaster.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
             <td *ngIf="!assetMaster.isActive"><input type="checkbox" class="form-check-input" disabled></td>
-            <td>
+            <td class="w-100">
                 <button type="submit" class="btn btn-dark bg-gradient" (click)="editDetails(assetMaster)"><i
                         class="fa fa-edit"></i></button>
                 <button type="submit" class="btn btn-dark bg-gradient ms-2" (click)="deleteDetails(assetMaster)"><i

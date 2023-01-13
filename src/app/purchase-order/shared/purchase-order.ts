@@ -1,6 +1,7 @@
 import { AssetDefinition } from "src/app/assets/asset-definition/shared/asset-definition";
 import { AssetType } from "src/app/assets/asset-type/shared/asset-type";
 import { Vendor } from "src/app/vendors/shared/vendor";
+import { PurchaseStatus } from "./purchase-status";
 
 export class PurchaseOrder {
     purchaseOrderId: number = 0;
@@ -12,8 +13,10 @@ export class PurchaseOrder {
     orderDate: Date = new Date;
     deliveryDate: Date = new Date;
     statusId: number = 0;
+    isActive: boolean = false;
 
     assetType:AssetType;
     assetDefinition: AssetDefinition;
     vendor:Vendor;
+    purchaseStatus:PurchaseStatus;
 }

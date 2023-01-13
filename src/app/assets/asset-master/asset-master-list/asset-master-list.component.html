@@ -22,19 +22,19 @@
     </thead>
     <tbody>
         <tr class="text-center" *ngFor="let assetMaster of assetMasterService.assetMasters">
-            <td>{{assetMaster.assetMasterId}}</td>
-            <td>{{assetMaster.assetType.typeName}}</td> 
-            <td>{{assetMaster.vendor.vendorName}}</td>
-            <td>{{assetMaster.assetDefinition.name}}</td>
-            <td>{{assetMaster.model}}</td>
-            <td>{{assetMaster.serialNumber}}</td>
-            <td>{{assetMaster.manufacturingYear}}</td>
-            <td>{{assetMaster.purchaseDate}}</td>
-            <td>{{assetMaster.warranty}}</td>
-            <td>{{assetMaster.warrantyFrom}}</td>
-            <td>{{assetMaster.warrantyTo}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.assetMasterId}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.assetType.typeName}}</td> 
+            <td *ngIf="assetMaster.isActive">{{assetMaster.vendor.vendorName}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.assetDefinition.name}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.model}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.serialNumber}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.manufacturingYear}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.purchaseDate}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.warranty}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.warrantyFrom}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.warrantyTo}}</td>
             <td *ngIf="assetMaster.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
-            <td *ngIf="!assetMaster.isActive"><input type="checkbox" class="form-check-input" disabled></td>
+            <!-- <td *ngIf="!assetMaster.isActive"><input type="checkbox" class="form-check-input" disabled></td> -->
         </tr>
     </tbody> 
 </table>

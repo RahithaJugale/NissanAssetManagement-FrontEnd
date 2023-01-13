@@ -14,15 +14,15 @@ import { Vendor } from '../shared/vendor';
 })
 export class VendorAddComponent implements OnInit {
 
-  isSubmitted:boolean = false;
+  isSubmitted: boolean = false;
   addVendorForm: FormGroup;
-  constructor(private formBuilder:FormBuilder, public assetTypeService: AssetTypeService, private toastr: ToastrService, public vendorService:VendorService, private router:Router) { }
+  constructor(private formBuilder: FormBuilder, public assetTypeService: AssetTypeService, private toastr: ToastrService, public vendorService: VendorService, private router: Router) { }
 
   ngOnInit(): void {
     this.addVendorForm = this.formBuilder.group(
       {
         //vendorName
-        vendorName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]")]],
+        vendorName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]+")]],
 
         //vendorType
         vendorType: ['Supplier', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
@@ -47,19 +47,23 @@ export class VendorAddComponent implements OnInit {
     this.getListOfAssetTypes();
   }
 
-  submitDetails(){
+  submitDetails() {
     this.isSubmitted = true;
-    if(this.addVendorForm.invalid){
+    if (this.addVendorForm.invalid) {
       this.toastr.error("Please check all values");
       console.log(this.addVendorForm.value);
     }
-    if(this.addVendorForm.valid){
+    if (this.addVendorForm.valid) {
       this.vendorService.addNewVendor(this.addVendorForm.value).subscribe(
         (result) => {
           console.log(result);
-          this.vendorService.vendors = result as Vendor[];
-          this.toastr.success("Vendor Added Successfully");
-          this.router.navigateByUrl('dashboard/vendor');
+          if (result == null) {
+            this.toastr.error("To date should be greater than From date");
+          } else {
+            this.vendorService.vendors = result as Vendor[];
+            this.toastr.success("Vendor Added Successfully");
+            this.router.navigateByUrl('dashboard/vendor');
+          }
         },
         (error) => {
           console.log(error);
@@ -69,12 +73,12 @@ export class VendorAddComponent implements OnInit {
     }
   }
 
-  get formControls(){
+  get formControls() {
     return this.addVendorForm.controls;
   }
 
   //get list of all asset types
-  getListOfAssetTypes(){
+  getListOfAssetTypes() {
     this.assetTypeService.getListOfAssetTypes().subscribe(
       (result) => {
         console.log(result);

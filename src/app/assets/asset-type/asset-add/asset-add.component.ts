@@ -19,7 +19,7 @@ export class AssetAddComponent implements OnInit {
     this.addAssetTypeForm = this.formBuilder.group(
       {
         //typeName
-        typeName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]")]],
+        typeName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]+")]],
 
         //isActive
         isActive: [false]

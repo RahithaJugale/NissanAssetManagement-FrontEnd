@@ -16,9 +16,21 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.purchaseOrderNo.errors" class="text-danger">
-                <div *ngIf="formControls.purchaseOrderNo.errors.required">
-                    <p>Purchase Order is required!</p>
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.purchaseOrderNo.errors" class="text-danger">
+                    <div *ngIf="formControls.purchaseOrderNo.errors.required">
+                        <p>Purchase Order is required!</p>
+                    </div>
+                    <div *ngIf="formControls.purchaseOrderNo.errors.minlength">
+                        <p>Minimum 2 characters required!</p>
+                    </div>
+                    <div *ngIf="formControls.purchaseOrderNo.errors.maxlength">
+                        <p>Only 10 characters allowed!</p>
+                    </div>
+                    <div *ngIf="formControls.purchaseOrderNo.errors.pattern">
+                        <p>Special characters are not allowed!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,9 +41,9 @@
             </div>
             <div class="col">
                 <!-- assetDefinitionId -->
-                <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required>
+                <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required (click)="getValue()">
                     <option value="" selected disabled>Select Asset Definition...</option>
-                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" (click)="getValue()">
+                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" >
                         {{assetDefinition.name}}</option>
                 </select>
 
@@ -39,9 +51,12 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
-                <div *ngIf="formControls.assetDefinitionId.errors.required">
-                    <p>Asset Definition is required!</p>
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
+                    <div *ngIf="formControls.assetDefinitionId.errors.required">
+                        <p>Asset Definition is required!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,34 +68,43 @@
                 <!-- assetTypeId -->
                 <!-- <div *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions"> -->
                     <!-- <div *ngIf="purchaseOrderService.assetDefinitionId === assetDefinition.assetDefinitionId"> -->
-                        <input type="text" formControlName="assetTypeId" class="form-control" value="formControls.assetDefinitionId" readonly>
+                        <input type="text" formControlName="assetTypeId" class="form-control" value="{{purchaseOrderService.assetTypeName}}" readonly>
                     </div> 
                 <!-- </div> -->
             <!-- </div>  -->
         </div>
-        <div class="row">
+        <!-- <div class="row"> -->
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
+            <!-- <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
                 <div *ngIf="formControls.assetTypeId.errors.required">
                     <p>Asset Type is required!</p>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row bg-light rounded pt-3">
             <div class="col-4 m-auto">
                 <label class="form-label"><b>Quantity</b></label>
             </div>
             <div class="col">
-                <!-- vendorFrom -->
+                <!-- quantity -->
                 <input type="number" placeholder="Quantity" class="form-control" required formControlName="quantity">
 
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.quantity.errors" class="text-danger">
-                <div *ngIf="formControls.quantity.errors.required">
-                    <p>Quantity is required!</p>
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.quantity.errors" class="text-danger">
+                    <div *ngIf="formControls.quantity.errors.required">
+                        <p>Quantity is required!</p>
+                    </div>
+                    <div *ngIf="formControls.quantity.errors.min">
+                        <p>Please enter values between 1 and 50!</p>
+                    </div>
+                    <div *ngIf="formControls.quantity.errors.max">
+                        <p>Please enter values between 1 and 50!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,18 +114,87 @@
             </div>
             <div class="col">
                 <select class="form-control" name="vendorId" id="vendorId" formControlName="vendorId" required>
-                    <option value="" selected>Select Vendor...</option>
-                    <option *ngFor="let vendor of vendorService.vendors"></option>
-                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}">
-                        {{assetDefinition.name}}</option>
+                    <option value="" selected disabled>Select Vendor...</option>
+                    <option *ngFor="let vendor of purchaseOrderService.purchaseVendors" value="{{vendor.vendorId}}">
+                        {{vendor.vendorName}}</option>
                 </select>
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div *ngIf="isSubmitted && formControls.vendorId.errors" class="text-danger">
-                <div *ngIf="formControls.vendorId.errors.required">
-                    <p>Vendor  is required!</p>
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.vendorId.errors" class="text-danger">
+                    <div *ngIf="formControls.vendorId.errors.required">
+                        <p>Vendor is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- orderDate -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Order Date</b></label>
+            </div>
+            <div class="col">
+                <input type="date" placeholder="Order Date" class="form-control" required formControlName="orderDate">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.orderDate.errors" class="text-danger">
+                    <div *ngIf="formControls.orderDate.errors.required">
+                        <p>Order Date is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- deliveryDate -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Delivery Date</b></label>
+            </div>
+            <div class="col">
+                <input type="date" placeholder="Delivery Date" class="form-control" required formControlName="deliveryDate">
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.deliveryDate.errors" class="text-danger">
+                    <div *ngIf="formControls.deliveryDate.errors.required">
+                        <p>Delivery Date is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status ID -->
+        <div class="row bg-light rounded pt-3">
+            <div class="col-4 m-auto">
+                <label class="form-label"><b>Status</b></label>
+            </div>
+            <div class="col">
+                <select class="form-control" name="statusId" id="statusId" formControlName="statusId" required>
+                    <option value="" selected disabled>Select Status...</option>
+                    <option *ngFor="let status of purchaseOrderService.purchaseStatus" value="{{status.statusId}}">
+                        {{status.status}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Validation -->
+            <div class="col-4"></div>
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.statusId.errors" class="text-danger">
+                    <div *ngIf="formControls.statusId.errors.required">
+                        <p>Status is required!</p>
+                    </div>
                 </div>
             </div>
         </div>

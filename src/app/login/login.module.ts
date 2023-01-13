@@ -35,7 +35,7 @@ const loginRoutes: Routes = [
   { path: 'purchase', component: PurchaseOrderComponent,canActivate:[AuthGuard], data:{role: '2'} },
   {
 
-    path: 'dashboard', component: DashboardComponent, children: [
+    path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard], data:{role: '1'}, children: [
       { path: 'asset-home', component: AssetHomeComponent , canActivate:[AuthGuard], data:{role: '1'}},
       { path: 'signup', component: SignupComponent,canActivate:[AuthGuard], data:{role: '1'} },
       { path: 'asset-type', component: AssetTypeComponent,canActivate:[AuthGuard], data:{role: '1'} },
