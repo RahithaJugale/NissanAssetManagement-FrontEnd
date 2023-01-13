@@ -1,0 +1,40 @@
+<a href="#" class="text-white" routerLink="../asset-master"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Asset Master List</h3>
+</div>
+<table class="table bg-light table-bordered table-striped w-100 m-auto mb-5 pb-5 rounded">
+    <thead>
+        <tr class="text-center">
+            <th>Asset Master Id</th>
+            <th>Asset Type</th>
+            <th>Vendor</th>
+            <th>Asset Definition</th>
+            <th>Model</th>
+            <th>Serial Number</th>
+            <th>Manufacturing year</th>
+            <th>Purchase Date</th>
+            <th>Warranty</th>
+            <th>Warranty From</th>
+            <th>Warranty To</th>
+            <th>Status</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center" *ngFor="let assetMaster of assetMasterService.assetMasters">
+            <td *ngIf="assetMaster.isActive">{{assetMaster.assetMasterId}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.assetType.typeName}}</td> 
+            <td *ngIf="assetMaster.isActive">{{assetMaster.vendor.vendorName}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.assetDefinition.name}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.model}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.serialNumber}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.manufacturingYear}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.purchaseDate}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.warranty}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.warrantyFrom}}</td>
+            <td *ngIf="assetMaster.isActive">{{assetMaster.warrantyTo}}</td>
+            <td *ngIf="assetMaster.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
+            <!-- <td *ngIf="!assetMaster.isActive"><input type="checkbox" class="form-check-input" disabled></td> -->
+        </tr>
+    </tbody> 
+</table>

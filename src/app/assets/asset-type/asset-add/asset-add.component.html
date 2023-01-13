@@ -1,0 +1,51 @@
+<a href="#" class="text-white" routerLink="../asset-type"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Add New Asset Type</h3>
+</div>
+<div class="container bg-light rounded w-50">
+    <form [formGroup]="addAssetTypeForm" autocomplete="off" (ngSubmit)="submitDetails()">
+        <div class="row bg-light rounded pt-5">
+            <div class="col-5 m-auto">
+                <label class="form-label"><b>Asset Type Name</b></label>
+            </div>
+            <div class="col">
+                <!-- typeName -->
+                <input type="text" placeholder="Enter Type name" class="form-control" required
+                formControlName="typeName"> 
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5"></div>
+            <!-- Validation -->
+            <div class="col">
+                <div *ngIf="isSubmitted && formControls.typeName.errors" class="text-danger">
+                    <div *ngIf="formControls.typeName.errors.required">
+                        <p>Type Name is required!</p>
+                    </div>
+                </div>
+                <div *ngIf="isSubmitted && formControls.typeName.errors" class="text-danger">
+                    <div *ngIf="formControls.typeName.errors.pattern">
+                        <p>Invalid Type Name!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- isActive -->
+        <div class="row mt-3 rounded">
+            <div class="col d-flex justify-content-end ">
+                <div class="form-check">
+                    <label class="form-label"><b>Is Available</b></label>
+                    <input type="checkbox" class="form-check-input" formControlName="isActive">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="row m-auto mt-4 pb-4 w-50">
+            <button class="btn btn-dark bg-gradient" type="submit"><b>Submit</b></button>
+        </div>
+
+    </form>
+</div>

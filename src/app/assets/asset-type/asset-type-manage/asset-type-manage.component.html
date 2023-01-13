@@ -1,0 +1,28 @@
+<a href="#" class="text-white" routerLink="../asset-type"><i class="fa fa-arrow-left float-left"></i></a>
+<div class="row">
+    <h3 class="text-center text-light p-4">Edit/Delete Asset Types</h3>
+</div>
+<table class="table bg-light table-bordered table-striped w-75 m-auto mb-5 pb-5 rounded">
+    <thead>
+        <tr class="text-center">
+            <th>Asset Type Id</th>
+            <th>Asset Type Name</th>
+            <th>Status</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center" *ngFor="let assetType of assetTypeService.assetTypes">
+            <td>{{assetType.assetTypeId}}</td>
+            <td>{{assetType.typeName}}</td>
+            <td *ngIf="assetType.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
+            <td *ngIf="!assetType.isActive"><input type="checkbox" class="form-check-input" disabled></td>
+            <td>
+                <button type="submit" class="btn btn-dark bg-gradient" (click)="editDetails(assetType)"><i
+                        class="fa fa-edit"></i></button>
+                <button type="submit" class="btn btn-dark bg-gradient ms-2" (click)="deleteDetails(assetType)"><i
+                        class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

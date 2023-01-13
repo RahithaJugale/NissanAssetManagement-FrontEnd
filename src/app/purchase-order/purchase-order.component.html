@@ -1,0 +1,37 @@
+<!--Navigation header-->
+<nav class="navbar w-100">
+    <div class="container">
+        <a class="navbar-brand text-white">Asset Management System</a>
+        <div>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <button class="btn btn-bordered-light text-white" routerLink="" (click)="logOut()">Log Out</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid" id="dashboard">
+    <!--Left side options-->
+    <div class="row h-100">
+        <div class="col-3 nav-col h-100">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <i class="fa fa-cubes"></i>
+                        <a href="#" routerLink="./purchase-order-add">Add New Purchase Order</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-user"></i>
+                        <a href="#" routerLink="./purchase-order-manage">Edit/Delete Purchase Order</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-user-plus"></i>
+                        <a href="#" routerLink="./purchase-order-list">View Purchase Orders</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

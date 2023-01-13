@@ -1,0 +1,42 @@
+<!-- <a href="#" class="text-white" routerLink="./purchase"><i class="fa fa-arrow-left float-left"></i></a> -->
+<div class="row">
+    <h3 class="text-center text-light p-4">Edit / Delete Purchase Orders</h3>
+</div>
+<table class="table bg-light table-bordered table-striped w-100 m-auto mb-5 pb-5 rounded">
+    <thead>
+        <tr class="text-center">
+            <th>Purchase Order ID</th>
+            <th>Purchase Order No</th>
+            <th>Asset Definition</th>
+            <th>Asset Type</th>
+            <th>Quantity</th>
+            <th>Vendor</th>
+            <th>Order Date</th>
+            <th>Delivery Date</th> 
+            <th>Status</th>
+            <th>Active Status</th>
+            <th>Manage</th> 
+        </tr>
+    </thead>
+    <tbody> 
+        <tr class="text-center" *ngFor="let purchase of purchaseOrderService.purchaseOrders">
+            <td>{{purchase.purchaseOrderId}}</td>
+            <td>{{purchase.purchaseOrderNo}}</td>
+            <td>{{purchase.assetDefinition.name}}</td>
+            <td>{{purchase.assetType.typeName}}</td>
+            <td>{{purchase.quantity}}</td>
+            <td>{{purchase.vendor.vendorName}}</td>
+            <td>{{purchase.orderDate}}</td>
+            <td>{{purchase.deliveryDate}}</td>
+            <td>{{purchase.purchaseStatus.status}}</td>
+            <td *ngIf="purchase.isActive"><input type="checkbox" checked class="form-check-input" disabled></td>
+            <td *ngIf="!purchase.isActive"><input type="checkbox" class="form-check-input" disabled></td>
+            <td class="w-100"> 
+                <button type="submit" class="btn btn-dark bg-gradient" (click)="editDetails(purchase)"><i
+                        class="fa fa-edit"></i></button>
+                <button type="submit" class="btn btn-dark bg-gradient ms-2" (click)="deleteDetails(purchase)"><i
+                        class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+    </tbody> 
+</table>
