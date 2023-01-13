@@ -18,6 +18,7 @@ export class AssetAddComponent implements OnInit {
   ngOnInit(): void {
     this.addAssetTypeForm = this.formBuilder.group(
       {
+        assetTypeId: [0],
         //typeName
         typeName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("[a-zA-Z ]+")]],
 
