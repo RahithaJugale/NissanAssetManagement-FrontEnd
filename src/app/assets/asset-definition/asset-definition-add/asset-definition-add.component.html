@@ -5,10 +5,10 @@
 <div class="container bg-light rounded w-50">
     <form [formGroup]="addAssetDefinitionForm" autocomplete="off" (ngSubmit)="submitDetails()">
         <div class="row bg-light rounded pt-5">
-            <div class="col-6 m-auto">
+            <div class="col-md-6 m-auto">
                 <label class="form-label"><b>Asset Definition Name</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- name -->
                 <input type="text" placeholder="Enter Asset name" class="form-control" required
                 formControlName="name"> 
@@ -17,8 +17,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-6"></div>
-            <div class="col">
+            <div class="col-md-6"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.name.errors" class="text-danger">
                     <div *ngIf="formControls.name.errors.required">
                         <p>Asset Name is required!</p>
@@ -30,22 +30,24 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-6 m-auto">
+            <div class="col-md-6 m-auto">
                 <label class="form-label"><b>Asset Type</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- assetTypeId -->
                 <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
                     <option value="" selected disabled>Select Asset Type...</option>
-                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option>
+                    <ng-container *ngFor="let assetType of assetTypeService.assetTypes">
+                        <option *ngIf="assetType.isActive" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option>
+                    </ng-container>
                 </select>
                 
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-6"></div>
-            <div class="col">
+            <div class="col-md-6"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
                     <div *ngIf="formControls.assetTypeId.errors.required">
                         <p>Asset Type is required!</p>
@@ -54,10 +56,10 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-6 m-auto">
+            <div class="col-md-6 m-auto">
                 <label class="form-label"><b>Asset Class</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- class -->
                 <select class="form-control" name="classId" id="classId" formControlName="classId" required>
                     <option value="" selected disabled>Select Asset Class...</option>
@@ -70,8 +72,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-6"></div>
-            <div class="col">
+            <div class="col-md-6"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.classId.errors" class="text-danger">
                     <div *ngIf="formControls.classId.errors.required">
                         <p>Asset Class is required!</p>
@@ -82,7 +84,7 @@
 
         <!-- isActive -->
         <div class="row mt-2 rounded">
-            <div class="col d-flex justify-content-end ">
+            <div class="col-md d-flex justify-content-end ">
                 <div class="form-check">
                     <label class="form-label"><b>Is Available?</b></label>
                     <input type="checkbox" class="form-check-input" formControlName="isActive">

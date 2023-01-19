@@ -5,10 +5,10 @@
 <div class="container bg-light rounded w-50">
     <form [formGroup]="addVendorForm" autocomplete="off" (ngSubmit)="submitDetails()">
         <div class="row bg-light rounded pt-5">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Vendor Name</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- vendorName -->
                 <input type="text" placeholder="Enter Vendor name" class="form-control" required
                     formControlName="vendorName">
@@ -17,8 +17,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.vendorName.errors" class="text-danger">
                     <div *ngIf="formControls.vendorName.errors.required">
                         <p>Vendor Name is required!</p>
@@ -36,10 +36,10 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Vendor Type</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- vendorType -->
                 <input type="text" placeholder="Enter Vendor Type" readonly class="form-control" required
                     formControlName="vendorType">
@@ -55,23 +55,24 @@
             </div>
         </div> -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Asset Type</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- assetTypeId -->
                 <select class="form-control" name="assetTypeId" id="assetTypeId" formControlName="assetTypeId" required>
                     <option value="" selected disabled>Select Asset Type...</option>
-                    <option *ngFor="let assetType of assetTypeService.assetTypes" value="{{assetType.assetTypeId}}">
-                        {{assetType.typeName}}</option>
+                    <ng-container *ngFor="let assetType of assetTypeService.assetTypes">
+                        <option *ngIf="assetType.isActive" value="{{assetType.assetTypeId}}">{{assetType.typeName}}</option>
+                    </ng-container>
                 </select>
 
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.assetTypeId.errors" class="text-danger">
                     <div *ngIf="formControls.assetTypeId.errors.required">
                         <p>Asset Type is required!</p>
@@ -80,10 +81,10 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Vendor From</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- vendorFrom -->
                 <input type="date" placeholder="Vendor From" class="form-control" required formControlName="vendorFrom">
 
@@ -91,8 +92,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.vendorFrom.errors" class="text-danger">
                     <div *ngIf="formControls.vendorFrom.errors.required">
                         <p>Vendor From is required!</p>
@@ -101,10 +102,10 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Vendor To</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- vendorTo -->
                 <input type="date" placeholder="Vendor To" class="form-control" required formControlName="vendorTo">
 
@@ -112,8 +113,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.vendorTo<formControls.vendorFrom">
                     <p class="text-danger">Date should be greater than From date!</p>
                 </div>
@@ -126,10 +127,10 @@
         </div>
 
         <div class="row bg-light mt-3 rounded">
-            <div class="col-4">
+            <div class="col-md-4">
                 <label class="form-label m-auto"><b>Address</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- address -->
                 <textarea placeholder="Enter Address" rows="2" cols="20" class="form-control" required
                 formControlName="vendorAddress"> </textarea>
@@ -140,8 +141,8 @@
 
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.vendorAddress.errors" class="text-danger">
                     <div *ngIf="formControls.vendorAddress.errors.required">
                         <p>Address is required!</p>
@@ -158,7 +159,7 @@
 
         <!-- isActive -->
         <div class="row mt-2 rounded">
-            <div class="col d-flex justify-content-end ">
+            <div class="col-md d-flex justify-content-end ">
                 <div class="form-check">
                     <label class="form-label"><b>Is Active</b></label>
                     <input type="checkbox" class="form-check-input" formControlName="isActive">

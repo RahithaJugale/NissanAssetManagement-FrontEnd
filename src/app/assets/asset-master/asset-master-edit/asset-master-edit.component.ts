@@ -92,7 +92,7 @@ export class AssetMasterEditComponent implements OnInit {
     if (this.editAssetMasterForm.valid) {
       this.assetMasterService.updateAssetMaster(this.editAssetMasterForm.value).subscribe(
         (result) => {
-          console.log(result);
+          console.log("ASSESTMASTER"+result);
           if (result == null) {
             this.toastr.error("To date should be greater than From Date");
           } else {
