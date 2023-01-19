@@ -5,10 +5,10 @@
 <div class="container bg-light rounded w-75">
     <form [formGroup]="addPurchaseForm" autocomplete="off" (ngSubmit)="submitDetails()">
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Purchase Order No</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- purchaseOrderNo -->
                 <input type="text" placeholder="Enter Purchase Order Number" class="form-control" required
                     formControlName="purchaseOrderNo">
@@ -16,8 +16,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.purchaseOrderNo.errors" class="text-danger">
                     <div *ngIf="formControls.purchaseOrderNo.errors.required">
                         <p>Purchase Order is required!</p>
@@ -36,23 +36,25 @@
         </div>
         <!-- assetDefinitionId -->
         <div class="row bg-light rounded pt-3"> 
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Asset Definition</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- assetDefinitionId -->
                 <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required (click)="getValue()">
                     <option value="" selected disabled>Select Asset Definition...</option>
-                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" >
-                        {{assetDefinition.name}}</option>
+                    <ng-container *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions">
+                        <option *ngIf="assetDefinition.isActive" value="{{assetDefinition.assetDefinitionId}}" >
+                            {{assetDefinition.name}}</option>
+                    </ng-container>
                 </select>
 
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
                     <div *ngIf="formControls.assetDefinitionId.errors.required">
                         <p>Asset Definition is required!</p>
@@ -61,10 +63,10 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Asset Type</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- assetTypeId -->
                 <!-- <div *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions"> -->
                     <!-- <div *ngIf="purchaseOrderService.assetDefinitionId === assetDefinition.assetDefinitionId"> -->
@@ -82,10 +84,10 @@
             </div>
         </div> -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Quantity</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- quantity -->
                 <input type="number" placeholder="Quantity" class="form-control" required formControlName="quantity">
 
@@ -93,8 +95,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.quantity.errors" class="text-danger">
                     <div *ngIf="formControls.quantity.errors.required">
                         <p>Quantity is required!</p>
@@ -109,21 +111,23 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Vendor Id</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <select class="form-control" name="vendorId" id="vendorId" formControlName="vendorId" required>
                     <option value="" selected disabled>Select Vendor...</option>
-                    <option *ngFor="let vendor of purchaseOrderService.purchaseVendors" value="{{vendor.vendorId}}">
-                        {{vendor.vendorName}}</option>
+                    <ng-container *ngFor="let vendor of purchaseOrderService.purchaseVendors">
+                        <option *ngIf="vendor.isActive" value="{{vendor.vendorId}}">
+                            {{vendor.vendorName}}</option>
+                    </ng-container>
                 </select>
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.vendorId.errors" class="text-danger">
                     <div *ngIf="formControls.vendorId.errors.required">
                         <p>Vendor is required!</p>
@@ -134,17 +138,17 @@
 
         <!-- orderDate -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Order Date</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <input type="date" placeholder="Order Date" class="form-control" required formControlName="orderDate">
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.orderDate.errors" class="text-danger">
                     <div *ngIf="formControls.orderDate.errors.required">
                         <p>Order Date is required!</p>
@@ -155,17 +159,17 @@
 
         <!-- deliveryDate -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Delivery Date</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <input type="date" placeholder="Delivery Date" class="form-control" required formControlName="deliveryDate">
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.deliveryDate.errors" class="text-danger">
                     <div *ngIf="formControls.deliveryDate.errors.required">
                         <p>Delivery Date is required!</p>
@@ -176,10 +180,10 @@
 
         <!-- Status ID -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Status</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <select class="form-control" name="statusId" id="statusId" formControlName="statusId" required>
                     <option value="" selected disabled>Select Status...</option>
                     <option *ngFor="let status of purchaseOrderService.purchaseStatus" value="{{status.statusId}}">
@@ -189,8 +193,8 @@
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.statusId.errors" class="text-danger">
                     <div *ngIf="formControls.statusId.errors.required">
                         <p>Status is required!</p>
@@ -201,7 +205,7 @@
 
         <!-- isActive -->
         <div class="row mt-2 rounded">
-            <div class="col d-flex justify-content-end ">
+            <div class="col-md d-flex justify-content-end ">
                 <div class="form-check">
                     <label class="form-label"><b>Is Active</b></label>
                     <input type="checkbox" class="form-check-input" formControlName="isActive">

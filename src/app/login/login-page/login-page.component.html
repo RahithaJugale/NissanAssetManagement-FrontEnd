@@ -8,16 +8,16 @@
       <h4>Login to your account!</h4>
     </div>
     <div class="row mt-4">
-      <div class="col-1">
+      <div class="col-md-1">
         <i class="fa fa-user"></i>
       </div>
-      <div class="col">
+      <div class="col-md">
         <input type="email" class="form-control" placeholder="Enter your e-mail ID" required formControlName="emailId">
       </div>
     </div>
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col">
+      <div class="col-md-1"></div>
+      <div class="col-md">
         <div *ngIf="isSubmitted && formControls.emailId.errors">
           <div *ngIf="formControls.emailId.errors.required" class="text-danger">
             <p>Email ID is required!</p>
@@ -26,17 +26,17 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-1">
+      <div class="col-md-1">
         <i class="fa fa-lock"></i>
       </div>
-      <div class="col">
+      <div class="col-md">
         <input type="password" class="form-control" placeholder="Enter your password" required
           formControlName="password">
       </div>
     </div>
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col">
+      <div class="col-md-1"></div>
+      <div class="col-md">
         <div *ngIf="isSubmitted && formControls.password.errors">
           <div *ngIf="formControls.password.errors.required" class="text-danger">
             <p>Password is required!</p>

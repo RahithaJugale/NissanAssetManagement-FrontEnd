@@ -5,10 +5,10 @@
 <div class="container bg-light rounded w-75">
     <form [formGroup]="editAssetMasterForm" autocomplete="off" (ngSubmit)="submitDetails()">
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Asset Master ID</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- AssetMasterId -->
                 <input type="text" placeholder="" class="form-control" required
                 formControlName="assetMasterId" readonly> 
@@ -16,23 +16,25 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3"> 
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Asset Definition</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- assetDefinitionId -->
                 <select class="form-control" name="assetDefinitionId" id="assetDefinitionId" formControlName="assetDefinitionId" required (click)="getValue()">
                     <option value="" selected disabled>Select Asset Definition...</option>
-                    <option *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions" value="{{assetDefinition.assetDefinitionId}}" >
-                        {{assetDefinition.name}}</option>
+                    <ng-container *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions">
+                        <option *ngIf="assetDefinition.isActive"  value="{{assetDefinition.assetDefinitionId}}" >
+                            {{assetDefinition.name}}</option>
+                    </ng-container>
                 </select>
 
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.assetDefinitionId.errors" class="text-danger">
                     <div *ngIf="formControls.assetDefinitionId.errors.required">
                         <p>Asset Definition is required!</p>
@@ -41,10 +43,10 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Asset Type</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- assetTypeId -->
                 <!-- <div *ngFor="let assetDefinition of assetDefinitionService.assetDefinitions"> -->
                     <!-- <div *ngIf="purchaseOrderService.assetDefinitionId === assetDefinition.assetDefinitionId"> -->
@@ -62,21 +64,23 @@
             </div>
         </div> -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Vendor Id</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <select class="form-control" name="vendorId" id="vendorId" formControlName="vendorId" required>
                     <option value="" selected disabled>Select Vendor...</option>
-                    <option *ngFor="let vendor of purchaseOrderService.purchaseVendors" value="{{vendor.vendorId}}">
-                        {{vendor.vendorName}}</option>
+                    <ng-container *ngFor="let vendor of purchaseOrderService.purchaseVendors">
+                        <option *ngIf="vendor.isActive" value="{{vendor.vendorId}}">
+                            {{vendor.vendorName}}</option>
+                    </ng-container>
                 </select>
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.vendorId.errors" class="text-danger">
                     <div *ngIf="formControls.vendorId.errors.required">
                         <p>Vendor is required!</p>
@@ -88,18 +92,18 @@
 
         <!-- model -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Model</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <input type="text" placeholder="Enter Model" class="form-control" required
                     formControlName="model">
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.model.errors" class="text-danger">
                     <div *ngIf="formControls.model.errors.required">
                         <p>Purchase Order is required!</p>
@@ -118,18 +122,18 @@
         </div>
         <!-- serialNumber -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Serial Number</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <input type="text" placeholder="Enter serial Number" class="form-control" required
                     formControlName="serialNumber">
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.serialNumber.errors" class="text-danger">
                     <div *ngIf="formControls.serialNumber.errors.required">
                         <p>Purchase Order is required!</p>
@@ -148,17 +152,17 @@
         </div>
         <!-- manufacturingYear -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Manufacturing Year</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <input type="number" placeholder="Manufacturing Year" class="form-control" required formControlName="manufacturingYear">
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.manufacturingYear.errors" class="text-danger">
                     <div *ngIf="formControls.manufacturingYear.errors.required">
                         <p>Manufacturing Year is required!</p>
@@ -180,17 +184,17 @@
         </div>
         <!-- purchaseDate -->
         <div class="row bg-light rounded pt-3">
-            <div class="col-4 m-auto">
+            <div class="col-md-4 m-auto">
                 <label class="form-label"><b>Purchase Date</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <input type="date" placeholder="Purchase Date" class="form-control" required formControlName="purchaseDate">
             </div>
         </div>
         <div class="row">
             <!-- Validation -->
-            <div class="col-4"></div>
-            <div class="col">
+            <div class="col-md-4"></div>
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.purchaseDate.errors" class="text-danger">
                     <div *ngIf="formControls.purchaseDate.errors.required">
                         <p>Purchase Date is required!</p>
@@ -199,36 +203,36 @@
             </div>
         </div>
         <div class="row bg-light rounded pt-3" *ngIf="formControls.warranty">
-            <div class="col-4"></div>
-            <div class="col-4">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
                 <label class="form-label"><b>From</b></label>
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
                 <label class="form-label"><b>To</b></label>
             </div>
         </div>
         <!-- warranty -->
         <div class="row bg-light rounded">
-            <div class="col-4 d-flex justify-content-start ">
+            <div class="col-md-4 d-flex justify-content-start ">
                 <div class="form-check">
                     <label class="form-label"><b>Warranty</b></label>
                     <input type="checkbox" class="form-check-input" formControlName="warranty">
                 </div>
             </div>
             <!-- warrantyFrom -->
-            <div class="col-4" *ngIf="formControls.warranty">
+            <div class="col-md-4" *ngIf="formControls.warranty">
                 <input type="date" placeholder="warranty From" class="form-control" required formControlName="warrantyFrom">
             </div>
             <!-- warrantyTo -->
-            <div class="col-4" *ngIf="formControls.warranty">
+            <div class="col-md-4" *ngIf="formControls.warranty">
                 <input type="date" placeholder="warranty To" class="form-control" required formControlName="warrantyTo">
             </div>
             <!-- warrantyFrom -->
-            <div class="col-4" *ngIf="!formControls.warranty">
+            <div class="col-md-4" *ngIf="!formControls.warranty">
                 <input type="date" placeholder="warranty From" class="form-control" required formControlName="warrantyFrom" readonly>
             </div>
             <!-- warrantyTo -->
-            <div class="col-4" *ngIf="!formControls.warranty">
+            <div class="col-md-4" *ngIf="!formControls.warranty">
                 <input type="date" placeholder="warranty To" class="form-control" required formControlName="warrantyTo" readonly>
             </div>
         </div>
@@ -236,7 +240,7 @@
         
         <!-- isActive -->
         <div class="row mt-2 rounded">
-            <div class="col d-flex justify-content-end ">
+            <div class="col-md d-flex justify-content-end ">
                 <div class="form-check">
                     <label class="form-label"><b>Is Active</b></label>
                     <input type="checkbox" class="form-check-input" formControlName="isActive">

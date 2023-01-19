@@ -5,10 +5,10 @@
 <div class="container bg-light rounded w-50">
     <form [formGroup]="addAssetTypeForm" autocomplete="off" (ngSubmit)="submitDetails()">
         <div class="row bg-light rounded pt-5">
-            <div class="col-5 m-auto">
+            <div class="col-md-5 m-auto">
                 <label class="form-label"><b>Asset Type Name</b></label>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <!-- typeName -->
                 <input type="text" placeholder="Enter Type name" class="form-control" required
                 formControlName="typeName"> 
@@ -16,9 +16,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-5"></div>
+            <div class="col-md-5"></div>
             <!-- Validation -->
-            <div class="col">
+            <div class="col-md">
                 <div *ngIf="isSubmitted && formControls.typeName.errors" class="text-danger">
                     <div *ngIf="formControls.typeName.errors.required">
                         <p>Type Name is required!</p>
@@ -34,7 +34,7 @@
 
         <!-- isActive -->
         <div class="row mt-3 rounded">
-            <div class="col d-flex justify-content-end ">
+            <div class="col-md d-flex justify-content-end ">
                 <div class="form-check">
                     <label class="form-label"><b>Is Available</b></label>
                     <input type="checkbox" class="form-check-input" formControlName="isActive">
